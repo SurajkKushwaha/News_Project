@@ -3,16 +3,23 @@ import requests
 
 # 1. Page Config
 st.set_page_config(page_title="My News Dashboard", layout="centered")
-st.markdown("<h1 style='text-align: center;'> My News Dashboard</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'> Live NEWS </h1>", unsafe_allow_html=True)
 st.markdown("---")
 
+
+
+
+
+# Streamlit ka ek rule hai—jab bhi aap koi button dabate ho, pura code starting se run hota hai. Iska matlab saare variables delete ho jate hain.
+# Hamein 'Next Page' ka token yaad rakhna hai taaki agla page load kar sakein. Isliye hum st.session_state use karte hain.
 
 
 # --- SESSION STATE SETUP ---
 # We use this to remember the "next page" token from the API
 if 'next_page_id' not in st.session_state:
     st.session_state.next_page_id = None
-
+# Yeh condition if 'next_page_id' not in...
+# sirf ye ensure karti hai ki hum variable ko pehli baar define karein, aur baar-baar overwrite na karein."
 
 
 
@@ -42,6 +49,8 @@ with st.sidebar:
     country_code = country_map[country_name]  # Get the code (e.g., "in")
 
     # Button to reset the pagination when filters change
+    # ("Is code ka matlab simple hai: Jab bhi hum Category ya Country change karein, toh hum purane page number par na atke rahein. "
+    #  "Hum chahte hain ki naya topic hamesha Page 1 se shuru ho, isliye hum ID ko reset karke app ko refresh kar rahe hain.")
     if st.button("Apply Filters"):
         st.session_state.next_page_id = None  # Reset to first page
         st.rerun()
@@ -99,6 +108,7 @@ if news_data and 'results' in news_data:
             st.caption(f"Source: {source_id}")
 
             if image_url:
+
                 col1, col2 = st.columns([3, 1])
                 with col1:
                     if description:
