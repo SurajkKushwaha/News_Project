@@ -2,8 +2,8 @@ import streamlit as st
 import requests
 
 # 1. Page Config
-st.set_page_config(page_title="My News Dashboard", layout="centered")
-st.markdown("<h1 style='text-align: center;'> Live NEWS </h1>", unsafe_allow_html=True)
+st.set_page_config(page_title="LIVE NEWS ", layout="centered")
+st.markdown("<h1 style='text-align: center;'> LIVE NEWS </h1>", unsafe_allow_html=True)
 st.markdown("---")
 
 
